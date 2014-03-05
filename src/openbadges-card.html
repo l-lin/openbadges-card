@@ -1,0 +1,15 @@
+<article class="ob-group" ng-cloak>
+	<header class="ob-header">
+		<span class="ob-mozilla">
+			<a href="https://backpack.openbadges.org/">
+				<img src="/images/openbadges-icon.png" title="Mozilla Backpack" />
+			</a>
+		</span>
+		<label class="ob-label">{{ name }}</label>
+	</header>
+	<div class="ob-img clear">
+		<a ng-repeat="badge in badges | limitTo:3" href="{{ badge.assertion.badge.criteria }}" >
+			<img src="{{ badge.imageUrl }}" width="64px" title="{{ badge.assertion.badge.name }}" />
+		</a>
+	</div>
+</article>

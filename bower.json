@@ -1,0 +1,34 @@
+{
+  "name": "openbadges-card",
+  "version": "0.0.1",
+  "author": "l-lin",
+  "main": [
+    "dist/openbadges-card.js",
+    "dist/openbadges-card.min.js",
+    "dist/openbadges-card.css",
+    "dist/openbadges-card.min.css"
+  ],
+  "ignore": [
+    ".bowerrc",
+    ".editorconfig",
+    ".git*",
+    ".jshintrc",
+    "Gruntfile.js",
+    "test",
+    "node_modules",
+    "src",
+    ".travis.yml",
+    "vendor"
+  ],
+  "dependencies": {
+    "angular": "1.2.14",
+    "angular-route": "1.2.14",
+    "angular-resource": "1.2.14"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.14"
+  },
+  "resolutions": {
+    "angular": "1.2.14"
+  }
+}
