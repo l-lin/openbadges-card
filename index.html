@@ -31,28 +31,49 @@
 	
 	<div class="container" ng-controller="appCtrl">
 		<article>
-			<h1>Get your <a href="https://backpack.openbadges.org" class="ob-link"><img src="/images/openbadges.png" title="Open Badges" width="300px" /></a> card now!</h1>
+			<h1>Get your <a href="https://backpack.openbadges.org" class="ob-link"><img src="images/openbadges.png" title="Open Badges" width="300px" /></a> card now!</h1>
 			<section>
 				<aside>
 					<h3>Preview</h3>
-					<iframe src="/badge.html#/displayer/68909/group/22392" style="border: 0;height: 140px;width: 240px;overflow: hidden;" frameBorder="0"></iframe>
+					<iframe src="badges.html#/displayer/68909/group/22392" style="border: 0;height: 140px;width: 240px;overflow: hidden;" frameBorder="0"></iframe>
 				</aside>
 				<aside class="note">
 					<h3>About</h3>
 					<p>
-						azety
+						<b>Work in progress</b>
+					</p>
+					<p>
+						See <a href="https://github.com/mozilla/openbadges/wiki/Displayer-API">Displayer API</a> for more information about Open badges APIs.
+					</p>
+					<p>
+						Do you have an idea of a missing feature or have you found a bug? Please <a href="https://github.com/l-lin/openbadges-card/issues">report</a>!
 					</p>
 				</aside>
 			</section>
 		</article>
 		<article>
-			<h1>Build my card now!</h1>
+			<h1>How to build your card</h1>
 			<section>
-				<input type="text" ng-model="email" placeholder="abc@def.com" />
-				<button type="submit" ng-click="findMyGroups()">Find my groups</button>
+				<h3>Step 1: insert your user ID</h3>
+				<form name="openbadgesForm">
+					<label>
+						<input type="number" placeholder="123456789" ng-model="userId" ng-required="true" pattern="\d*" />
+					</label>
+					<button type="button" ng-click="findMyGroups();$event.preventDefault()">Find my groups</button>
+				</form>
+					You can find your userId right <a href="http://beta.openbadges.org/displayer/convert/email">here</a>.
 			</section>
 			<section>
-				My User id is: {{ userId }}
+				<h3>Step 2: Select the group of badges you want to display</h3>
+				<div ng-repeat="group in groups">
+					<ul>
+						<li>GroupId: {{ group.groupId }}</li>
+						<li>Name: {{ group.name }}</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Step 3: Boast by copying the embedded card showing your badges</h3>
 			</section>
 		</article>
 	</div>

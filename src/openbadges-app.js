@@ -1,15 +1,15 @@
 (function() {
 	'use strict';
 	angular.module('openbadgesApp', ['ngResource']).
-	value('OB_USER_API_URL', 'http://beta.openbadges.org/displayer/convert/email').
-	controller('appCtrl', function($scope, $resource, OB_USER_API_URL) {
-		$scope.email = '';
+	value('OB_GROUPS_API_URL', 'http://beta.openbadges.org/displayer/:userId/groups.json').
+	controller('appCtrl', function($scope, $resource, OB_GROUPS_API_URL) {
+		$scope.userId = '';
 
 		$scope.findMyGroups = function findMyGroups() {
-			var UserInfo = $resource(OB_USER_API_URL);
+			var UserInfo = $resource(OB_GROUPS_API_URL, {userId: '@id'});
 
-			UserInfo.save({email: $scope.email}).$promise.then(function(userInfo) {
-				$scope.userId = userInfo.userId;
+			UserInfo.get({userId: $scope.userId}).$promise.then(function(groupsInfo) {
+				$scope.groups = groupsInfo.groups;
 			});
 		};
 	});
