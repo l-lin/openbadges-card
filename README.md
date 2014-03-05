@@ -1,4 +1,4 @@
-openbadge-card [![Build Status](https://travis-ci.org/l-lin/openbadge-card.png?branch=master)](https://travis-ci.org/l-lin/openbadge-card) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+openbadges-card [![Build Status](https://travis-ci.org/l-lin/openbadges-card.png?branch=master)](https://travis-ci.org/l-lin/openbadges-card) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ================
 > Create your own Open badges card!
 
