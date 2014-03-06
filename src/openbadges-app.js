@@ -2,10 +2,8 @@
 	'use strict';
 	angular.module('openbadgesApp', ['ngResource']).
 	value('OB_GROUPS_API_URL', 'http://beta.openbadges.org/displayer/:userId/groups.json').
-	value('OB_URL_API', 'http://beta.openbadges.org/displayer/:userId/group/:groupId.json').
 	controller('appCtrl', function($scope, $resource, OB_GROUPS_API_URL) {
 		$scope.currentStep = 1;
-		$scope.userId = 68909;
 
 		$scope.isActive = function isActive(step) {
 			return $scope.currentStep === step;
@@ -27,19 +25,19 @@
 
 		$scope.accessToStep = function accessToStep(step) {
 			switch (step) {
-				case 1:
-					$scope.currentStep = 1;
-					break;
-				case 2:
-					if ($scope.userId) {
-						$scope.currentStep = 2;
-					}
-					break;
-				case 3:
-					if ($scope.groupId) {
-						$scope.currentStep = 3;
-					}
-					break;
+			case 1:
+				$scope.currentStep = 1;
+				break;
+			case 2:
+				if ($scope.userId) {
+					$scope.currentStep = 2;
+				}
+				break;
+			case 3:
+				if ($scope.userId && $scope.groupId) {
+					$scope.currentStep = 3;
+				}
+				break;
 			}
 		};
 	});
