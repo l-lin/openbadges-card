@@ -2,7 +2,7 @@ openbadges-card [![Build Status](https://travis-ci.org/l-lin/openbadges-card.png
 ================
 > Create your own Open badges card!
 
-**Work in progress**
+[Open badges card](http://l-lin.github.io/openbadges-card/) is a simple embeddable card showing your [Open badges](https://backpack.openbadges.org/).
 
 License
 ================
