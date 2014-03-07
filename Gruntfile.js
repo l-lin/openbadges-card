@@ -128,15 +128,26 @@ module.exports = function(grunt) {
                 options: {
                     stripBanners: false
                 },
-                src: ['<%= yeoman.src %>/*.js',
+                src: ['<%= yeoman.src %>/openbadges-card.js',
                     '<%= yeoman.build %>/openbadges-card.template.js'
                 ],
                 dest: '<%= yeoman.build %>/openbadges-card.js'
+            },
+            buildApp: {
+                options: {
+                    stripBanners: false
+                },
+                src: ['<%= yeoman.src %>/openbadges-app.js'],
+                dest: '<%= yeoman.build %>/openbadges-app.js'
             },
             // Copy the source files with the banner in dist folder
             banner: {
                 src: ['<%= yeoman.build %>/openbadges-card.js'],
                 dest: '<%= yeoman.dist %>/openbadges-card.js'
+            },
+            bannerApp: {
+                src: ['<%= yeoman.build %>/openbadges-app.js'],
+                dest: '<%= yeoman.dist %>/openbadges-app.js'
             },
             bannerCSS: {
                 src: ['<%= yeoman.src %>/openbadges-card.css'],
@@ -175,6 +186,13 @@ module.exports = function(grunt) {
                         '<%= yeoman.build %>/openbadges-card.js'
                     ]
                 }
+            },
+            distApp: {
+                files: {
+                    '<%= yeoman.dist %>/openbadges-app.min.js': [
+                        '<%= yeoman.build %>/openbadges-app.js'
+                    ]
+                }
             }
         },
         /** ------------- JS UNIT TESTING + CODE COVERAGE ------------- */
@@ -209,10 +227,13 @@ module.exports = function(grunt) {
         'clean:dist',
         'ngtemplates',
         'concat:build',
+        'concat:buildApp',
         'ngmin',
         'cssmin',
-        'uglify',
+        'uglify:dist',
+        'uglify:distApp',
         'concat:banner',
+        'concat:bannerApp',
         'concat:bannerCSS'
     ]);
 

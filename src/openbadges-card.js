@@ -7,9 +7,12 @@
         $routeProvider.when('/displayer/:userId/group/:groupId', {
             templateUrl: 'src/openbadges-card.html',
             controller: 'obCtrl'
+        }).
+        otherwise({
+            templateUrl: 'src/openbadges-error.html'
         });
     }).
-    controller('obCtrl', function($q, $scope, $routeParams, $resource, OB_URL_API, OB_GROUPS_URL_API) {
+    controller('obCtrl', function($q, $scope, $routeParams, $resource, $location, OB_URL_API, OB_GROUPS_URL_API) {
         var userId = parseInt($routeParams.userId, 10),
             groupId = parseInt($routeParams.groupId, 10),
             GroupsInfo = $resource(OB_GROUPS_URL_API, {
@@ -40,6 +43,8 @@
                 }
             }
             $scope.badges = badges;
-        }, function(err) {});
+        }, function() {
+            $location.path('/error');
+        });
     });
 })();

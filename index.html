@@ -18,51 +18,106 @@
 	<link rel="stylesheet" href="vendor/font-awesome-animation/font-awesome-animation.min.css">
 </head>
 <body ng-app="openbadgesApp">
-	<header>
-		<h1><a href="https://github.com/l-lin/openbadge-card">openbadge-card</a></h1>
-        <p>
-            openbadge-card
-        </p>
-        <a href="https://github.com/l-lin/openbadge-card">
-        	<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-        </a>
-        <hr />
-	</header>
-	
-	<div class="container" ng-controller="appCtrl">
-		<article>
-			<h1>Get your <a href="https://backpack.openbadges.org" class="ob-link"><img src="/images/openbadges.png" title="Open Badges" width="300px" /></a> card now!</h1>
-			<section>
-				<aside>
-					<h3>Preview</h3>
-					<iframe src="/badge.html#/displayer/68909/group/22392" style="border: 0;height: 140px;width: 240px;overflow: hidden;" frameBorder="0"></iframe>
-				</aside>
-				<aside class="note">
-					<h3>About</h3>
-					<p>
-						azety
-					</p>
-				</aside>
-			</section>
-		</article>
-		<article>
-			<h1>Build my card now!</h1>
-			<section>
-				<input type="text" ng-model="email" placeholder="abc@def.com" />
-				<button type="submit" ng-click="findMyGroups()">Find my groups</button>
-			</section>
-			<section>
-				My User id is: {{ userId }}
-			</section>
-		</article>
+	<div class="github-ribbon">
+		<a href="https://github.com/l-lin/openbadge-card">
+	    	<img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+	    </a>
 	</div>
 
-	<footer>
-		Designed and built with <i class="fa fa-heart faa-pulse animated"></i> by <a href="https://github.com/l-lin">Louis LIN</a>
+	<header class="header">
+		<h1><a href="https://github.com/l-lin/openbadge-card">openbadge-card</a></h1>
+        <p>
+            Open badges card is a simple embeddable card showing your Open badges
+        </p>
+	</header>
+	
+	<article class="main-container">
+		<div class="container" ng-controller="appCtrl">
+			<article>
+				<h1>Get your <a href="https://backpack.openbadges.org" class="ob-link"><img src="images/openbadges.png" title="Open Badges" width="300px" /></a> card now!</h1>
+				<section class="content info">
+					<aside>
+						<h3>Preview</h3>
+						<iframe src="badges.html#/displayer/68909/group/22392" style="border: 0;height: 150px;width: 250px;overflow: hidden;" frameBorder="0"></iframe>
+					</aside>
+					<aside class="note">
+						<h3>What is Open badges?</h3>
+						<blockquote>
+							A new online standard to recognize and verify learning
+						</blockquote>
+						<p>
+							<strong>Show the world what you have learned so far!</strong>
+						</p>
+						<br />
+						<p>
+							See <a href="https://github.com/mozilla/openbadges/wiki/Displayer-API">Displayer API</a> for more information about Open badges APIs.
+						</p>
+						<p>
+							Do you have an idea of a missing feature or have you found a bug? Please <a href="https://github.com/l-lin/openbadges-card/issues">report</a>!
+						</p>
+					</aside>
+				</section>
+			</article>
+			<article class="main-content">
+				<header class="ob-form">
+					<h1><i class="fa fa-pencil-square-o"></i>&nbsp;How to build your card</h1>
+				</header>
+				<div class="ob-form-content">
+					<ul class="ob-wizard">
+						<li class="step1" ng-class="{active: isActive(1)}"  ng-click="accessToStep(1)">
+							<span class="step">1</span>
+							<span class="title"><h3>Insert your user ID</h3></span>
+						</li>
+						<li class="step2" ng-class="{active: isActive(2)}" ng-click="accessToStep(2)">
+							<span class="step">2</span>
+							<span class="title"><h3>Select your badges</h3></span>
+						</li>
+						<li class="step3" ng-class="{active: isActive(3)}" ng-click="accessToStep(3)">
+							<span class="step">3</span>
+							<span class="title"><h3>Show off!</h3></span>
+						</li>
+					</ul>
+					<section class="content step step1" ng-show="isActive(1)">
+						<form name="openbadgesForm">
+							<label>
+								<input type="text" placeholder="123456789" ng-model="userId" ng-required="true" pattern="\d*" />
+								<button class="btn btn-primary btn-find" type="button" ng-click="findMyGroups();$event.preventDefault()">
+									<i class="fa fa-search"></i>&nbsp;Find badges
+								</button>
+							</label>
+						</form>
+							You can find your <strong>user ID</strong> right <a href="http://beta.openbadges.org/displayer/convert/email">here</a>.
+					</section>
+
+					<section class="content step step2" ng-show="isActive(2)">
+						<ul class="groups">
+							<li ng-repeat="group in groups" class="group btn btn-success" ng-click="selectGroup(group.groupId)">
+								<i class="fa fa-picture-o"></i>&nbsp;{{ group.name }}
+							</li>
+						</ul>
+					</section>
+
+					<section class="content step step3" ng-show="isActive(3)">
+						<h3>
+							Copy paste your card on your site's HTML!
+						</h3>
+						<div class="highlight">
+<pre><code class="html language-html" data-lang="html"><span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">"http://l-lin.github.com/badges.html#/displayer/{{ userId }}/group/{{ groupId }}"</span> <span class="na">style=</span><span class="s">"border: 0;height: 150px;width: 250px;overflow: hidden;"</span> <span class="na">frameBorder=</span><span class="s">"0"</span><span class="nt">&gt;&lt;/iframe&gt;</span></code></pre>
+						</div>
+					</div>
+				</section>
+			</article>
+		</div>
+	</article>
+
+	<footer class="footer">
+		<div class="footer-note">
+			Designed and built with <i class="fa fa-heart faa-pulse animated"></i> by <a href="https://github.com/l-lin">Louis LIN</a>
+		</div>
 	</footer>
 
 	<script src="vendor/angular/angular.min.js"></script>
 	<script src="vendor/angular-resource/angular-resource.min.js"></script>
-	<script src="src/openbadges-app.js"></script>
+	<script src="dist/openbadges-app.min.js"></script>
 </body>
 </html>
