@@ -43,7 +43,7 @@
                 }
             }
             $scope.badges = badges;
-        }, function(err) {
+        }, function() {
             $location.path('/error');
         });
     });
